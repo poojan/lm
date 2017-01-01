@@ -19,13 +19,26 @@ class PagesController < ApplicationController
 
     tags_data = ExternalSites.extract_tags_data(url)
 
-    @page = Page.new(page_params)
-
-    if @page.save
-      render json: @page, status: :created, location: @page
-    else
-      render json: @page.errors, status: :unprocessable_entity
+    Page.transaction do
+      Content.transaction do
+        @page = Page.new(page_params)
+        @page.contents.new(tags_data)
+        # @page.save
+        if @page.save
+          render json: @page, status: :created, location: @page
+        else
+          render json: @page.errors, status: :unprocessable_entity
+        end
+      end
     end
+
+    # @page = Page.new(page_params)
+
+    # if @page.save
+      # render json: @page, status: :created, location: @page
+    # else
+      # render json: @page.errors, status: :unprocessable_entity
+    # end
   end
 
   # PATCH/PUT /pages/1
