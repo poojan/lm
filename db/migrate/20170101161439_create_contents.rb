@@ -3,6 +3,7 @@ class CreateContents < ActiveRecord::Migration[5.0]
     create_table :contents do |t|
       t.string :tag
       t.string :body
+      t.string :href
       t.references :page, foreign_key: true
 
       t.timestamps

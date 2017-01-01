@@ -10,14 +10,14 @@ module ExternalSites
   def self.extract_tags_data(url)
     doc = self.fetch(url)
 
-    tags = ['h1', 'h2', 'h3', 'a']
-    tags.reduce([]) do |json, tag|
-      doc.search(tag).each do |el|
-        unless el.text.strip == ''
-          json.push({ tag: tag, body: el.text.strip })
-        end
-      end
-      json
+    doc.css('h1, h2, h3, a').map do |el|
+      href = el.attribute('href').value rescue nil
+
+      {
+        tag: el.name,
+        body: el.text,
+        href: href
+      }
     end
   end
 
