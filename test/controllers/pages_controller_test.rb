@@ -10,7 +10,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   it "creates page" do
     expect {
-      post pages_url, params: { page: { url: page.url } }
+      post pages_url, params: { page: { url: 'http://www.example.com' } }
+      # post pages_url, params: { page: { url: page.url } }
     }.must_change "Page.count"
 
     value(response.status).must_equal 201

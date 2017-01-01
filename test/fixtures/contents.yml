@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tag: MyString
-  body: MyString
+  tag: ContentOne_tag
+  body: ContentOne_body
   page: one
 
 two:
-  tag: MyString
-  body: MyString
+  tag: ContentTwo_tag
+  body: ContentTwo_body
   page: two
+
+
