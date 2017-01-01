@@ -5,14 +5,14 @@ class PagesController < ApplicationController
 
   # GET /pages
   def index
-    @pages = Page.all
+    @pages = Page.all.includes(:contents)
 
-    render json: @pages
+    render json: @pages.to_json(:include => [:contents => { :except => :page_id } ])
   end
 
   # GET /pages/1
   def show
-    render json: @page
+    render json: @page.to_json(:include => [:contents => { :except => :page_id } ])
   end
 
   # POST /pages
@@ -28,14 +28,6 @@ class PagesController < ApplicationController
     else
       render json: @page.errors, status: :unprocessable_entity
     end
-
-    # @page = Page.new(page_params)
-
-    # if @page.save
-      # render json: @page, status: :created, location: @page
-    # else
-      # render json: @page.errors, status: :unprocessable_entity
-    # end
   end
 
   # PATCH/PUT /pages/1
@@ -55,7 +47,7 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @page = Page.includes(:contents).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
