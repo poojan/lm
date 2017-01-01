@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module ExternalSites
   def self.fetch(url)
     Nokogiri::HTML(open(url)) do |config|

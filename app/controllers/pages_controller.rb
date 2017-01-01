@@ -1,3 +1,5 @@
+require 'external_sites'
+
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :update, :destroy]
 
