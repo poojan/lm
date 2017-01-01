@@ -15,7 +15,7 @@ module ExternalSites
 
       {
         tag: el.name,
-        body: el.text,
+        body: el.text.strip,
         href: href
       }
     end
