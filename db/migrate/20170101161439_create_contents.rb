@@ -6,7 +6,7 @@ class CreateContents < ActiveRecord::Migration[5.0]
       t.string :href
       t.references :page, foreign_key: true
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end
