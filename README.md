@@ -75,13 +75,12 @@ Sample Request Payload:
 
 ### Others
 
-GET /pages/:page_id : Shows details for a single page
-DELETE /pages/:page_id : Delete page and its contents
+* GET /pages/:page_id : Shows details for a single page
+* DELETE /pages/:page_id : Delete page and its contents
 
 ### TODO
 
 * PUT /pages/:page_id needs to refresh contents.
-
 * Bulk insert contents instead of using separate queries.
 
 
