@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   let(:page) { pages :one }
+  let(:url) { 'http://www.example.com' }
 
   it "gets index" do
     get pages_url
@@ -10,7 +11,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   it "creates page" do
     expect {
-      post pages_url, params: { page: { url: 'http://www.example.com' } }
+      post pages_url, params: { page: { url: url } }
       # post pages_url, params: { page: { url: page.url } }
     }.must_change "Page.count"
 
