@@ -24,7 +24,8 @@ class PagesController < ApplicationController
     body = { url: url }
     saved_page = Page.save_page_and_content(body, tags_data)
     if saved_page
-      render json: @page, status: :created, location: @page
+      json = saved_page.to_json(:include => [:contents => { :except => :page_id } ])
+      render json: json, status: :created, location: @page
     else
       render json: @page.errors, status: :unprocessable_entity
     end
