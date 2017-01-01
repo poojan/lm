@@ -12,26 +12,23 @@ describe Page do
   end
 
   it "should not allow empty urls" do
-    body = {
-      url: nil
-    }
+    body = { url: nil }
     tags_data = []
-    saved_page_id = page.save_page_and_content(body, tags_data)
-    assert_not saved_page_id
+    assert_raises(Exception) do
+      Page.save_page_and_content(body, tags_data)
+    end
   end
 
   it "should save page and tag contents" do
-    body = {
-      url: url
-    }
+    body = { url: url }
     tags_data = [
       { tag: 'h1', body: 'Heading 1' },
       { tag: 'h2', body: 'Heading 2' },
     ]
-    saved_page_id = page.save_page_and_content(body, tags_data)
-    assert saved_page_id
+    saved_page = Page.save_page_and_content(body, tags_data)
+    assert saved_page
 
-    found = Page.find(saved_page_id)
+    found = saved_page
     assert found
     assert_equal found.contents.length, 2
     assert_equal found.url, url
