@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A tiny RESTful API to index a page's content. Supports h1, h2, h3, a tags.
 
-Things you may want to cover:
 
-* Ruby version
+## Installation
 
-* System dependencies
+#### Install dependencies
+```
+$ bundle
+```
 
-* Configuration
+#### Run database migrations
+```
+$ rails db:migrate
+```
 
-* Database creation
+#### Run server
+```
+$ rails s
+```
 
-* Database initialization
+## Run
 
-* How to run the test suite
+```
+rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Run Tests
 
-* Deployment instructions
+```
+rails test
+```
 
-* ...
+## API
+
+#### GET /pages
+
+List all indexed pages.
+
+
+#### POST /pages
+
+Create and index a URL.
+
+Sample Request Payload:
+```
+{
+  "page": {
+    "url": "..."
+  }
+}
+```
+
+### Others
+
+GET /pages/:page_id : Shows details for a single page
+DELETE /pages/:page_id : Delete page and its contents
+
+### TODO
+
+* PUT /pages/:page_id needs to refresh contents.
+* Bulk insert contents instead of using separate queries.
+
+
+## Author:
+
+Poojan Shrestha <poojans@gmail.com>
