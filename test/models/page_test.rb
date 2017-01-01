@@ -11,6 +11,15 @@ describe Page do
       .to_return(:status => 200, :body => "<h1>heading 1</h1><h2>heading 2</h2>", :headers => {})
   end
 
+  it "should not allow empty urls" do
+    body = {
+      url: nil
+    }
+    tags_data = []
+    saved_page_id = page.save_page_and_content(body, tags_data)
+    assert_not saved_page_id
+  end
+
   it "should save page and tag contents" do
     body = {
       url: url

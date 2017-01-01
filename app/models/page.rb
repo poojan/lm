@@ -1,5 +1,6 @@
 class Page < ApplicationRecord
   has_many :contents, :dependent => :delete_all
+  validates :url, presence: true
 
   def save_page_and_content(page_params, tags_data)
     Page.transaction do
