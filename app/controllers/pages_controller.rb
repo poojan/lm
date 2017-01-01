@@ -15,6 +15,10 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
+    url = page_params[:url]
+
+    tags_data = ExternalSites.extract_tags_data(url)
+
     @page = Page.new(page_params)
 
     if @page.save
