@@ -38,6 +38,27 @@ rails test
 
 List all indexed pages.
 
+Sample Response Payload:
+
+```
+[
+  {
+    "id": 1,
+    "url": "http://alistapart.com/",
+    "created_at": "2017-01-01T20:19:32.072Z",
+    "updated_at": "2017-01-01T20:19:32.072Z",
+    "contents": [
+      {
+        "id": 1,
+        "tag": "h1",
+        "body": "A List Apart",
+        "href": null
+      },
+      ...
+    ]
+  }
+]
+```
 
 #### POST /pages
 
@@ -47,7 +68,7 @@ Sample Request Payload:
 ```
 {
   "page": {
-    "url": "..."
+    "url": "http://alistapart.com/",
   }
 }
 ```
